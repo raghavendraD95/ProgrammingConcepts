@@ -25,17 +25,19 @@ public class MainClass
 
             Task<string> breadBakingTask = ovenKitchen.BakeBread();
 
-            Console.WriteLine("Getting teacher data");
+            Console.WriteLine("Getting the veggies");
 
             string vegetables = await vegetableKitchen.GettingVegetablesReady();
 
-            Console.WriteLine("Washing the vegetables"+ vegetables);
+            Console.WriteLine("Washing the vegetables:"+ vegetables);
 
             Console.WriteLine("Taking 5 seconds to chop vegetables");
 
             await Task.Delay(5000);
 
-            Console.WriteLine("Vegetables are done, now awaiting the bread task to be done");
+            Console.WriteLine("Vegetables are done");
+
+            Console.WriteLine("Now waiting for the bread task to be completed");
 
             string finishedBread = await breadBakingTask;
 
@@ -43,7 +45,7 @@ public class MainClass
 
             Console.WriteLine("Getting marks data");
 
-            int marks = await ovenKitchen.MakeSandwich(finishedBread, vegetables);
+            string sandwich = await ovenKitchen.MakeSandwich(finishedBread, vegetables);
 
             watch.Stop();
             Console.WriteLine($"Execution Time:{ watch.ElapsedMilliseconds} ms");
@@ -80,7 +82,7 @@ public class OvenKitchen
         return "Normal bread";
     }
 
-    public async Task<int> MakeSandwich(string bread, string vegetables)
+    public async Task<string> MakeSandwich(string bread, string vegetables)
     {
 
         Console.WriteLine("Initiating Sandwich making process");
@@ -89,7 +91,7 @@ public class OvenKitchen
 
         Console.WriteLine("Veg Sandwich Made");
 
-        return 100;
+        return "Veg sandwich";
     }
 }
 
@@ -100,12 +102,12 @@ public class VegetablesKitchen
 
     public async Task<string> GettingVegetablesReady()
     {
-        Console.WriteLine("Initiating database connection for teacher db");
+        Console.WriteLine("Get the veggies from the market");
 
         await Task.Delay(3000);
 
-        Console.WriteLine("Teacher Data retrieved");
+        Console.WriteLine("Veggies from market came");
 
-        return "Dr. Dre";
+        return "Tomatoes and spinach";
     }
 }
